@@ -1,13 +1,13 @@
 body {
-    background-color: #9df30c;
+    background-color: #f60f09;/* #9df30c;*/
     text-align: center;
 }
 
 .heading {
-    color: #620CF3;
+    color: #09f0f6;/* #620CF3;*/
 }
 
-.calculatorBody {
+.calculator {
     position: absolute;
     left: 46%;
     width: 300px;
@@ -15,13 +15,26 @@ body {
 
     background-color: #fff;
     border-radius: 10px;
-    border: 3px solid #620CF3;
+    border: 3px solid #09f0f6;
+}
+
+.clearButton, .calculatorDisplay {
+    display: inline-block;
+    vertical-align: middle; /* aligns clearButton and calculatorDisplay*/
+}
+.calculatorDisplay {
+    width: 110px;
+    height: 20px;
+    border: 1px solid #1b06f9;
+    border-radius: 5px;
+    background-color: #e4f906;
 }
 
 button {
-    border-radius: 50%;
+    border-radius: 5px;
 }
 
-.enterButton {
-    border-radius: 10px;
+/* Buttons below are active with JavaScript */
+.number2Button, .clearButton, .additionButton, .solveButton {
+    background-color: #07f87e;
 }

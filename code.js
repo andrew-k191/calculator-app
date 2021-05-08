@@ -1,18 +1,47 @@
-// Where to start with this app?
+const calculatorDisplay = document.querySelector('.calculatorDisplay');
 
-// Let's try: add, subtract, multiply, divide
+// resetting the calculator display to zero
+const clearButton = document.querySelector('.clearButton');
+clearButton.addEventListener('click', () => {
+    calculatorDisplay.textContent = 0;
+});
 
-const addTwoNumbers = (num1, num2) => {
-    const sumOfTwoNumbers = num1 + num2;
-    return sumOfTwoNumbers;
-}
+let arithmeticOperator = null;
+let canResetCalculatorDisplay = 'NO'; 
+let firstNumber = 0;
 
-const subtractTwoNumbers = (num1, num2) => {
-    const differenceOfTwoNumbers = num1 - num2;
-    return differenceOfTwoNumbers;
-}
+const number2Button = document.querySelector('.number2Button');
+number2Button.addEventListener('click', () => {
+    // if the current value of calculatorDisplay is zero 
+    if ((parseInt(calculatorDisplay.textContent) === 0) || (canResetCalculatorDisplay === 'YES')) {
+        calculatorDisplay.textContent = 2;
+        canResetCalculatorDisplay = 'NO'; 
+    }
+    else {
+        calculatorDisplay.textContent += 2;
+    }
+});
 
-const multiplyTwoNumbers = (num1, num2) => {
-    const 
-}
-console.log(subtractTwoNumbers(103,-25));
+// addition operator
+const additionButton = document.querySelector('.additionButton');
+additionButton.addEventListener('click', () => {
+    firstNumber = parseInt(calculatorDisplay.textContent);
+    canResetCalculatorDisplay = 'YES'; 
+    arithmeticOperator = '+';
+});
+
+// solve button
+const solveButton = document.querySelector('.solveButton');
+solveButton.addEventListener('click', () => {
+    switch (arithmeticOperator) {
+        case '+':
+            calculatorDisplay.textContent = firstNumber + parseInt(calculatorDisplay.textContent);
+            canResetCalculatorDisplay = 'YES';
+            break;
+    }
+});
+
+
+// set isDivEmpty to true, then false once solved,
+// clear should reset it back to true
+
