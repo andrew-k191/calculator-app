@@ -1,12 +1,14 @@
+/* #620CF3;*/
+/*#f60f09*//* #9df30c;*/
+/* aligns clearButton and calculatorDisplay*/
+
 body {
-    background-color: #f60f09;/* #9df30c;*/
+    background-color: grey;
     text-align: center;
 }
-
 .heading {
-    color: #09f0f6;/* #620CF3;*/
+    color: #09f0f6;
 }
-
 .calculator {
     position: absolute;
     left: 46%;
@@ -18,10 +20,11 @@ body {
     border: 3px solid #09f0f6;
 }
 
-.clearButton, .calculatorDisplay {
+.clearDisplay, .calculatorDisplay {
     display: inline-block;
-    vertical-align: middle; /* aligns clearButton and calculatorDisplay*/
+    vertical-align: middle; 
 }
+
 .calculatorDisplay {
     width: 110px;
     height: 20px;
@@ -32,9 +35,9 @@ body {
 
 button {
     border-radius: 5px;
-}
+} 
 
 /* Buttons below are active with JavaScript */
-.number2Button, .clearButton, .additionButton, .solveButton {
+/* .number2Button, .clearButton, .additionButton, .equalButton {
     background-color: #07f87e;
-}
+} */
