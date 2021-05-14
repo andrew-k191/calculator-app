@@ -20,7 +20,7 @@ body {
     border: 3px solid #09f0f6;
 }
 
-.clear-display, .calculator-display {
+.clear, .calculator-display {
     display: inline-block;
     vertical-align: middle; 
 }

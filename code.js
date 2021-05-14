@@ -1,44 +1,20 @@
 const calculatorDisplay = document.querySelector('.calculator-display');
-// Initialize variables that will be useful
+const clearButton = document.querySelector('.clear');
+const equationSolver = document.querySelector('.equation-solver');
+const decimalButton = document.querySelector('.decimal');
+const numberButtons = document.querySelectorAll('.number');
+const arithmeticOperatorButtons = document.querySelectorAll('.arithmetic-operator');
+const memoryButtons = document.querySelectorAll('.memory');
+
 let firstOperand = '';
 let secondOperand = ''; 
 let arithmeticOperator = ''; 
-// let canAddDecimal = true;
-let currentResult = 0; // Should always remain a number
+let currentResult = 0; 
+let memory = '';
 
-// Conditions that can initialize 1st operand:
-// * arithmetic operator must not exist 
-// * secondOperand must not exist 
-// * currentResult can be reassigned to firstOperand
+// Functions
 
-// Conditions that can initialize arithmetic operator(s):
-// * firstOperand must exist or current result must exist
-
-// Conditions that can initialize 2nd operand:
-// * firstOperand must exist
-// * arithmetic operator must exist
-
-
-// Conditions solver can be invoked
-// * firstOperand, arithmetic operator, secondOperand exists
-
-/* Numbers Generator */
-const numberButtons = document.querySelectorAll('.number');
-numberButtons.forEach(numberButton => {
-    numberButton.addEventListener('click', (e) => {
-        if (!arithmeticOperator) {
-            firstOperand += e.target.textContent;
-            calculatorDisplay.textContent = firstOperand;
-            console.log('firstOperand: ', firstOperand);
-        }
-        if (firstOperand && arithmeticOperator) {
-            secondOperand += e.target.textContent;
-            calculatorDisplay.textContent = secondOperand;
-            console.log('secondOperand: ', secondOperand);
-        }
-    });
-});
-
+/* decimal check function */
 const addDecimalToOperand = (operand) => {
     const operandArray = operand.split('');
     if (operandArray.indexOf('.') === -1) {
@@ -47,112 +23,100 @@ const addDecimalToOperand = (operand) => {
     return operandArray.join('');
 };
 
-/* Decimal Button */
-// can add decimal only once for firstOperand and secondOperand 
-const decimalButton = document.querySelector('.decimal');
+/* arithmetic operation function */
+const arithmeticOperationCalculator = (firstOperand, secondOperand, arithmeticOperator) => {
+    let arithmeticOperationResult = 0;
+    firstOperand = parseFloat(firstOperand);
+    secondOperand = parseFloat(secondOperand);
+    switch (arithmeticOperator) {
+        case '+':
+            arithmeticOperationResult = firstOperand + secondOperand;
+            break;
+        case '-':
+            arithmeticOperationResult = firstOperand - secondOperand;
+            break;
+        case '×':
+            arithmeticOperationResult = firstOperand * secondOperand;
+            break;
+        case '÷':
+            arithmeticOperationResult = firstOperand / secondOperand;
+            break;
+    }
+    return arithmeticOperationResult;
+};
+
+// Event Listeners
+
+/* clear button */
+clearButton.addEventListener('click', () => {
+    // reset all values 
+    calculatorDisplay.textContent = 0;
+    firstOperand = secondOperand = arithmeticOperator = '';
+    currentResult = 0;
+});
+
+/* decimal button */
 decimalButton.addEventListener('click', () => {
     if (!arithmeticOperator) {
         firstOperand = addDecimalToOperand(firstOperand);
         calculatorDisplay.textContent = firstOperand;
-        // firstOperand += e.target.textContent;
-        // calculatorDisplay.textContent += e.target.textContent;
-        // canAddDecimal = false;
     }
     else if (firstOperand && arithmeticOperator) {
         secondOperand = addDecimalToOperand(secondOperand);
         calculatorDisplay.textContent = secondOperand;
-        // secondOperand += e.target.textContent;
-        // calculatorDisplay.textContent += e.target.textContent;
-        // canAddDecimal = false;
     }
-    // && canAddDecimal
 });
 
-/* Arithmetic Operator */
-const arithmeticOperatorButtons = document.querySelectorAll('.arithmetic-operator')
-arithmeticOperatorButtons.forEach(arithmeticOperatorButton => {
-    arithmeticOperatorButton.addEventListener('click', (e) => {
-        if (firstOperand) {
-            arithmeticOperator = e.target.textContent;
-            // canAddDecimal = true;
-            console.log('arithmeticOperator: ', arithmeticOperator);
-        } 
-        // if firstOperand doesn't exist and arithmetic operator is invoked
-        else if (!firstOperand) {
-            firstOperand = currentResult;
-            arithmeticOperator = e.target.textContent;
-            // canAddDecimal = true; 
-            console.log('arithmeticOperator: ', arithmeticOperator);
+/* numbers generator */
+numberButtons.forEach(numberButton => {
+    numberButton.addEventListener('click', (e) => {
+        if (!arithmeticOperator) {
+            firstOperand += e.target.textContent;
+            calculatorDisplay.textContent = firstOperand;
+        }
+        if (firstOperand && arithmeticOperator) {
+            secondOperand += e.target.textContent;
+            calculatorDisplay.textContent = secondOperand;
         }
     });
 });
 
-/* Equation Solver */
-const equationSolver = document.querySelector('.equation-solver');
-equationSolver.addEventListener('click', () => {
-    firstOperand = parseFloat(firstOperand);
-    if (firstOperand && secondOperand) {
-        secondOperand = parseFloat(secondOperand);
-        switch (arithmeticOperator) {
-            case '+':
-                currentResult = firstOperand + secondOperand;
-                console.log(currentResult);
-                break;
-            case '-':
-                currentResult = firstOperand - secondOperand;
-                break;
-            case '×':
-                currentResult = firstOperand * secondOperand;
-                break;
-            case '÷':
-                currentResult = firstOperand / secondOperand;
-                break;
+/* arithmetic operator */
+arithmeticOperatorButtons.forEach(arithmeticOperatorButton => {
+    arithmeticOperatorButton.addEventListener('click', (e) => {
+        if (firstOperand) {
+            arithmeticOperator = e.target.textContent;
         } 
-        // Continuous Functionality
-        currentResult = parseFloat(currentResult.toFixed(3));
-        console.log('CurrentResult: ', currentResult);
+        else if (!firstOperand) {
+            firstOperand = currentResult.toString(); // accounts for zero 
+            arithmeticOperator = e.target.textContent;
+        }
+    });
+});
+
+/* equation solver */
+equationSolver.addEventListener('click', () => {
+    if (firstOperand && secondOperand) {
+        currentResult = parseFloat(arithmeticOperationCalculator(firstOperand, secondOperand, arithmeticOperator).toFixed(3));
         calculatorDisplay.textContent = currentResult;
         firstOperand = secondOperand = arithmeticOperator = '';
-        // canAddDecimal = true; 
-    } 
-    // // currentResult, arithmeticOperation, firstOperand
-    // // second operand does not exist
-    // else if (firstOperand && !secondOperand) {
-    //     switch (arithmeticOperator) {
-    //         case '+':
-    //             currentResult += firstOperand;
-    //             break;
-    //         case '-':
-    //             currentResult -= firstOperand;
-    //             break;
-    //         case '×':
-    //             currentResult *= firstOperand;
-    //             break;
-    //         case '÷':
-    //             currentResult /= firstOperand;
-    //             break;
-    //     } 
-    //     // Continuous Functionality
-    //     currentResult = parseFloat(currentResult.toFixed(3));
-    //     console.log('CurrentResult: ', currentResult);
-    //     calculatorDisplay.textContent = currentResult;
-    //     firstOperand = secondOperand = arithmeticOperator = '';
-    //     canAddDecimal = true; 
-    // }
+    }
 });
 
-/* Clear All Button */
-const clearDisplayButton = document.querySelector('.clear-display');
-clearDisplayButton.addEventListener('click', () => {
-    // Resets all values 
-    calculatorDisplay.textContent = 0;
-    firstOperand = secondOperand = arithmeticOperator = '';
-    currentResult = 0;
-    // canAddDecimal = true;
+/* memory functionality */
+memoryButtons.forEach(memoryButton => {
+    memoryButton.addEventListener('click', (e) => {
+        switch (e.target.textContent) {
+            case 'm+':
+                memory = (parseFloat(calculatorDisplay.textContent)).toFixed(3);
+                break;
+            case 'm-':
+                memory = '';
+                break;
+            case 'mr':
+                firstOperand = memory;
+                calculatorDisplay.textContent = memory;
+                break;
+        }
+    })
 });
-
-
-// check if number has at least one decimal
-// if so, decimals are not allowed
-// otherwise decimals are allowed
-
