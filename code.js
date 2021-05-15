@@ -13,7 +13,6 @@ let currentResult = 0;
 let memory = '';
 
 // Functions
-
 /* decimal check function */
 const addDecimalToOperand = (operand) => {
     const operandArray = operand.split('');
@@ -46,8 +45,6 @@ const arithmeticOperationCalculator = (firstOperand, secondOperand, arithmeticOp
 };
 
 // Event Listeners
-
-/* clear button */
 clearButton.addEventListener('click', () => {
     // reset all values 
     calculatorDisplay.textContent = 0;
@@ -55,7 +52,6 @@ clearButton.addEventListener('click', () => {
     currentResult = 0;
 });
 
-/* decimal button */
 decimalButton.addEventListener('click', () => {
     if (!arithmeticOperator) {
         firstOperand = addDecimalToOperand(firstOperand);
@@ -67,7 +63,6 @@ decimalButton.addEventListener('click', () => {
     }
 });
 
-/* numbers generator */
 numberButtons.forEach(numberButton => {
     numberButton.addEventListener('click', (e) => {
         if (!arithmeticOperator) {
@@ -81,20 +76,18 @@ numberButtons.forEach(numberButton => {
     });
 });
 
-/* arithmetic operator */
 arithmeticOperatorButtons.forEach(arithmeticOperatorButton => {
     arithmeticOperatorButton.addEventListener('click', (e) => {
         if (firstOperand) {
             arithmeticOperator = e.target.textContent;
         } 
         else if (!firstOperand) {
-            firstOperand = currentResult.toString(); // accounts for zero 
+            firstOperand = currentResult.toString(); // accounts for zero i.e. 7 - 7 = 0 - 7 = -7
             arithmeticOperator = e.target.textContent;
         }
     });
 });
 
-/* equation solver */
 equationSolver.addEventListener('click', () => {
     if (firstOperand && secondOperand) {
         currentResult = parseFloat(arithmeticOperationCalculator(firstOperand, secondOperand, arithmeticOperator).toFixed(3));
@@ -103,7 +96,6 @@ equationSolver.addEventListener('click', () => {
     }
 });
 
-/* memory functionality */
 memoryButtons.forEach(memoryButton => {
     memoryButton.addEventListener('click', (e) => {
         switch (e.target.textContent) {

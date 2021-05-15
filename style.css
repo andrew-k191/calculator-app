@@ -1,43 +1,96 @@
-/* #620CF3;*/
-/*#f60f09*//* #9df30c;*/
-/* aligns clearButton and calculatorDisplay*/
+/* Newsreader Font  */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;700&display=swap');
+/* Permanent Marker Font */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 body {
+    font-family: 'Newsreader', serif;
     background-color: grey;
     text-align: center;
 }
 .heading {
-    color: #09f0f6;
+    color: #000;
+    font-family: 'Permanent Marker', 'cursive';
 }
 .calculator {
-    position: absolute;
-    left: 46%;
-    width: 300px;
-    margin-left: -100px;
-
-    background-color: #fff;
-    border-radius: 10px;
-    border: 3px solid #09f0f6;
+    width: 175px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f60f09;
+    border-radius: 5px;
+    border: 2px solid #000;
 }
-
-.clear, .calculator-display {
-    display: inline-block;
-    vertical-align: middle; 
-}
-
 .calculator-display {
-    width: 110px;
-    height: 20px;
-    border: 1px solid #1b06f9;
-    border-radius: 5px;
-    background-color: #e4f906;
+    border-color: #000;
+    background-color: #fff;
 }
 
-button {
-    border-radius: 5px;
-} 
+.clear, .equation-solver {
+    color: #000;
+    background-color: #ffa600;
+    border-color: #000;
+}
+.clear:hover, .equation-solver:hover {
+    color: #fff;
+    background-color: #0059ff;
+    border-color: #fff;
+    cursor: pointer;
+}
+.clear:active, .equation-solver:active {
+    background-color: #ffa600;
+}
 
-/* Buttons below are active with JavaScript */
-/* .number2Button, .clearButton, .additionButton, .equalButton {
-    background-color: #07f87e;
-} */
+tr {
+    border: none;
+    text-align: center;
+}
+td {
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.memory {
+    color: #f60f09;
+    border-color: #000;
+    background-color: #09f0f6;  
+}
+.memory:hover {
+    color: #09f0f6;
+    background-color: #f60f09;
+    border-color: #fff;
+    cursor: pointer;
+}
+.memory:active {
+    background-color: #09f0f6;
+}
+
+.number, .decimal {
+    color: #ffa600;
+    background-color: #000;
+    border-color: #000;
+}
+.number:hover, .decimal:hover {
+    color: #0059ff;
+    background-color: #fff;
+    border-color: #0059ff;
+    cursor: pointer
+}
+.number:active, .decimal:active {
+    background-color: #000;
+}
+
+.arithmetic-operator {
+    color: #000;
+    background-color: #12b2ed;
+    border-color: #000; 
+}
+.arithmetic-operator:hover {
+    color: #fff;
+    background-color: #ed4d12;
+    border-color: #fff;
+    cursor: pointer;
+}
+.arithmetic-operator:active {
+    background-color: #12b2ed;
+}
