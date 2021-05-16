@@ -8,6 +8,8 @@ Check it out <a href="https://andrew-k191.github.io/calculator-app/">here!!!</a>
 
 ## Summary
 
+Wow!! I must say I never grasped how intricate and complex a calculator(albeit simple) could really be. 
+
 ## Author
 
 * **Andrew Knight** - *Aspiring Software Developer* - (Website)|(LinkeIn)
