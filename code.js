@@ -78,7 +78,15 @@ numberButtons.forEach(numberButton => {
 
 arithmeticOperatorButtons.forEach(arithmeticOperatorButton => {
     arithmeticOperatorButton.addEventListener('click', (e) => {
-        if (firstOperand) {
+        if (firstOperand && secondOperand && arithmeticOperator) {
+            // continuous operation feature
+            currentResult = parseFloat(arithmeticOperationCalculator(firstOperand, secondOperand, arithmeticOperator).toFixed(3));
+            calculatorDisplay.textContent = currentResult;
+            firstOperand = currentResult.toString();
+            arithmeticOperator = e.target.textContent;
+            secondOperand = '';
+        }
+        else if (firstOperand) {
             arithmeticOperator = e.target.textContent;
         } 
         else if (!firstOperand) {
@@ -112,3 +120,8 @@ memoryButtons.forEach(memoryButton => {
         }
     })
 });
+
+
+// Continuous Operation
+
+// if firstOperand, secondOperand, and arithmetic operator exists then 
