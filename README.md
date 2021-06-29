@@ -14,4 +14,4 @@ I learned so much and also realized where I could do better. On to the next proj
 
 ## Author
 
-* **Andrew Knight** - *Aspiring Software Developer* - (Website)|(LinkeIn)
+* **Andrew Knight** - *Software Developer* - (Website)|(LinkeIn)
